@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+<!--title part-->
+{% block title %}Admin Signup{% endblock %}
+<!--head part-->
+{% block head %}
+{{ super() }}
+<style>
+  #input{
+      margin-left: 10px;
+  }
+  .card{
+    margin-top:40px;border-top-left-radius: 25px;border-bottom-right-radius: 25px;border:solid 1px #5C6BC0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+  }
+  .card:hover{
+    box-shadow: 0 0 5px 5px #757575;transition:ease .5s;
+  }
+  .card-header{
+      background-color: #5C6BC0;text-align: center;color: white;font-size: 20px;
+      border:solid 1px #5C6BC0;
+    }
+    #button{
+    background-color: #5C6BC0;width:90px;
+    }
+    #btn{
+    background-color: #C62828;width:90px;
+    }
+    #btn:hover{
+    box-shadow: 2px 2px rgb(0,0,0);
+    }
+    #button:hover{
+    box-shadow: 2px 2px rgb(0,0,0);
+    }
+    body{
+        background: #EEEEEE;
+    }
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+
+<div class="container">
+    <form action="/admin_data" method="post">
+    <div class="row justify-content-center">
+        <div class="col-sm-7">
+            <div class="card">
+                <div class="card-header" style="border-top-left-radius: 25px;">Admin Sign-up</div>
+                    <div class="card-body"><br>
+
+                        <!--error message-->
+
+{% with messages= get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>{{msg}}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+                                    <!--end-->
+    <div class="row">
+        <div class="col-sm-11">
+            <label>Name:</label>
+            <input type="text" class="form-control" id="input" placeholder="Full Name" name="nam" required>
+        </div>
+        </div><br>
+    
+
+    <div class="row">
+        <div class="col-sm-11">
+            <label>E-mail:</label>
+            <input type="email" class="form-control" id="input" placeholder="Example@gmail.com"  name="mail"required>
+        </div>
+    </div><br>
+    
+
+    <div class="row">
+        <div class="col-sm-11">
+            <label>Password:</label>
+            <input type="password" class="form-control" id="input" placeholder="Enter Password" name="pass" required>
+        </div>
+    </div><br>
+
+    <div class="row">
+        <div class="col-sm-11">
+            <label>Re-Password:</label>
+            <input type="password" class="form-control" id="input" placeholder="Re-Enter Password" name="repass" required>
+        </div>
+    </div><br><br>
+
+
+
+<div class="d-flex justify-content-left">
+    <input type="submit" value="Register" class="btn btn-info" name="submit" id="button">&nbsp;&nbsp;&nbsp;
+    <input type="reset" value="Reset" class="btn btn-danger" name="reset" id="btn">
+</div><br>
+</div>
+</div>
+</div>
+</div>
+</form>
+</div>
+
+
+{% endblock %}

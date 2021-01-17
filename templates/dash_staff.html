@@ -1,0 +1,123 @@
+{% extends "stafflayout.html" %}
+<!--title part-->
+{% block title %}staff dashboard{% endblock %}
+<!--head part-->
+{% block head %}
+{{ super() }}
+<style>
+.card{
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+#img{
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+#img1
+{
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  height:230px
+
+}
+.card{
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border:solid 1px white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+    }
+    .card:hover{
+    box-shadow: 0 0 5px 5px #757575;
+    transition:ease .5s;
+  }
+  </style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+    
+
+
+
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand"></a>
+    <form class="form-inline mr-auto ml-auto" action="/search_data" method="post">
+     <div class="row">
+         <div class="col-sm-8">
+          <input type="text" class="form-control  mr-sm-9" id="input" placeholder="Enter License No." name="search" required>
+         </div>
+         <div class="col-sm-2">
+          <button type="submit" class="btn btn-info" id="buttons">Search</button>
+         </div>
+     </div>
+  </form>
+  </nav><br><br>
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+          <div class="container">
+        <div class="card animate__animated animate__fadeInBottomLeft" style="height:439px">
+          <img src="{{url_for('static', filename='de.jpg')}}" class="card-img-top" alt="..." id="img">
+          <div class="card-body">
+            <table class="table table-borderless" style="border-collapse:collapse;">
+              <tbody>
+                  <tr>
+                    <th class="a1">Name</th>
+                   <td class="b">{{session['staff_name']}}</td>
+                </tr>
+                <tr>
+                  <th class="a1">E-mail:</th>
+                  <td class="b">{{session['staff_mail']}}</td>
+                </tr>
+                <tr style="border-bottom:none">
+                    <th class="a1">Phone:</th>
+                    <td class="b">{{session['staff_phone']}}</td>
+                </tr>
+            </tbody>
+      </table>
+          </div>
+        </div>
+              </div>
+      </div>
+
+      <div class="col-sm-4">
+          <div class="container">
+        <div class="card animate__animated animate__fadeInUp" style="margin-top:5px;height:439px">
+          <img src="{{url_for('static', filename='sta1.jpg')}}" class="card-img-top" alt="..." id="img1"><br><br>
+          <div class="card-body">
+            <h1 style="text-align:center">10</h1>
+          </div>
+        </div>
+      </div>
+          </div>
+
+      <div class="col-sm-4">
+          <div class="container">
+        <div class="card animate__animated animate__fadeInBottomRight" style="margin-top: 5px;height:439px">
+          <img src="{{url_for('static', filename='sta2.jpg')}}" class="card-img-top" alt="..." id="img1">
+          <br><br>
+          <div class="card-body">
+            <h1 style="text-align:center">20</h1>
+          </div>
+        </div>
+      </div>
+        </div>
+
+
+    </div>
+  </div>
+
+
+
+
+  {% with messages= get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+                      <script>swal(" {{msg}}", "Successfully done", "success");</script>
+{% endfor %}
+{% endif %}
+{% endwith %}
+{% endblock %}

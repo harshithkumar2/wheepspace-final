@@ -1,0 +1,149 @@
+{% extends "userlayout.html" %}
+<!--title part-->
+{% block title %}staff dashboard{% endblock %}
+<!--head part-->
+{% block head %}
+{{ super() }}
+<style>
+.card{
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+#img{
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+#img1
+{
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  height:198px
+
+}
+.card{
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border:solid 1px white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+    }
+    .card:hover{
+    box-shadow: 0 0 5px 5px #757575;
+    transition:ease .5s;
+  }
+
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}<br><br>
+    <div class="container">
+      <div class="row">
+
+        <div class="col-sm-4">
+
+          <div class="card animate__animated animate__fadeInBottomLeft" style="height:455px">
+            <img src="{{url_for('static', filename='de.jpg')}}" class="card-img-top" alt="..." id="img1">
+            <div class="card-body">
+              <table class="table table-borderless" style="border-collapse:collapse;">
+                <tbody>
+                    <tr>
+                      <th class="a1">Name</th>
+                     <td class="b">{{session['user_name']}}</td>
+                  </tr>
+                  <tr>
+                    <th class="a1">E-mail:</th>
+                    <td class="b">{{session['user_mail']}}</td>
+                  </tr>
+                  <tr>
+                    <th class="a1">License:</th>
+                    <td class="b">{{session['lic_no']}}</td>
+                  </tr>
+                  <tr style="border-bottom:none">
+                      <th class="a1">Phone:</th>
+                      <td class="b">{{session['phone']}}</td>
+                  </tr>
+              </tbody>
+        </table>
+          </div>
+        </div>
+            </div>
+
+        <div class="col-sm-4">
+
+          <div class="card animate__animated animate__fadeInUp" style="margin-top:5px">
+            <img src="{{url_for('static', filename='opcl.jpg')}}" class="card-img-top" alt="..." id="img1">
+            <div class="card-body">
+              <table class="table table-borderless" style="border-collapse:collapse;">
+                <tbody>
+                    <tr>
+                      <th class="a1">Open:</th>
+                     <td class="b">09:00 AM</td>
+                  </tr>
+                  <tr>
+                    <th class="a1">Tea Time:</th>
+                    <td class="b">11:00 AM</td>
+                  </tr>
+                  <tr>
+                    <th class="a1">Lunch Time:</th>
+                    <td class="b">02:30 PM</td>
+                  </tr>
+                  <tr style="border-bottom:none">
+                      <th class="a1">Close:</th>
+                      <td class="b">10:00 PM</td>
+                  </tr>
+              </tbody>
+        </table>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-sm-4">
+
+          <div class="card animate__animated animate__fadeInBottomRight" style="margin-top: 5px;">
+            <img src="{{url_for('static', filename='cost.png')}}" class="card-img-top" alt="..." id="img1">
+            <div class="card-body">
+              <table class="table table-borderless" style="border-collapse:collapse;">
+                <tbody>
+                    <tr>
+                      <th class="a1">2 wheels:</th>
+                     <td class="b">20 Rs</td>
+                  </tr>
+                  <tr>
+                    <th class="a1">4 Wheels:</th>
+                    <td class="b">40 Rs</td>
+                  </tr>
+                  <tr>
+                    <th class="a1">Huge vech.</th>
+                    <td class="b">70 Rs</td>
+                  </tr>
+                  <tr style="border-bottom:none">
+                      <th class="a1">1 day:</th>
+                      <td class="b">100 Rs</td>
+                  </tr>
+              </tbody>
+        </table>
+            </div>
+          </div>
+            </div>
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+  {% with messages= get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+                      <script>swal(" {{msg}}", "Successfully done", "success");</script>
+{% endfor %}
+{% endif %}
+{% endwith %}
+{% endblock %}

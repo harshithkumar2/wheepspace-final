@@ -1,0 +1,13 @@
+{
+  "data": {
+    "host": "127.0.0.1",
+    "port": 3307,
+    "db_name": "wheelspace",
+    "password": "4sf18cs049",
+    "db_user": "root",
+    "mail_host": "smtp.gmail.com",
+    "mail_port": 465,
+    "mail_username": "waduhek480@gmail.com",
+    "mail_pass": "zafcergszejpjlsv"
+  }
+}

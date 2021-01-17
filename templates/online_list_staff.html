@@ -1,0 +1,74 @@
+{% extends "stafflayout.html" %}
+<!--title part-->
+{% block title %}Booking list{% endblock %}
+<!--head part-->
+{% block head %}
+{{ super() }}
+<style>
+table{
+  font-family:'Roboto' sans-serif;border-collapse: collapse;width: 100%;
+}
+table tr:nth-child(even){
+  background-color: #E0E0E0;
+  }
+table th {
+  padding-top: 14px;padding-bottom: 14px;text-align:left;background-color:#1976D2;color: whitesmoke;letter-spacing:0.5px;
+  user-select: none;border-right: 0.5px solid #BBDEFB;
+ }
+table td
+{
+border-right: 0.5px solid #BBDEFB;height:70px;
+}
+table td, table th {
+ border-bottom: 0.5px solid #BBDEFB;
+}
+table tr:hover {
+  background-color: #E3F2FD;cursor: pointer;
+}
+#button{
+  background-color: #00C853;width:50px;
+}
+#btn{
+    background-color: #C62828;width:50px;
+    }
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+
+    {% with messages= get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+                        <p style="text-align:center;color:red;font-size:20px;">{{msg}}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+    <table class="table ">
+  <thead>
+    <tr>
+      <th scope="col">License No</th>
+      <th scope="col">Vehicle No</th>
+      <th scope="col">Vehicle Type</th>
+      <th scope="col">Durations(in hrs)</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in data %}
+
+    <tr>
+        <td>{{i["license_no"]}}</td>
+        <td>{{i["vech_no"]}}</td>
+        <td>{{i["vech_type"]}}</td>
+        <td>{{i["duration"]}}</td>
+        <td>{{i["dates"]}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"  crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"  crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+    <title>{% block title %}{% endblock %} - Wheel Space</title>
+    <style>
+        body{
+          font-family: 'Roboto' sans-serif;
+        }
+        *{
+          margin: 0;padding: 0;text-decoration: none;list-style: none;
+        }
+        #text1{
+          color: #fff;margin: 0;text-transform: uppercase;font-size: 20.5px;
+          font-weight: 750;
+        }
+        #text1 span{
+          color: #42A5F5;
+        }
+        #sidebarCollapse{
+          color:white;width:45px;
+        }
+        #sidebarCollapse:hover{
+         background-color: #1976D2;
+        }
+        .sidenav {
+          height: 100%;width: 0;position: fixed;z-index: 1;top: 0;
+          left: 0;background-color:#2f323a;overflow-x: hidden;
+          transition: all .5s ease;box-shadow: 7px 2px 5px 0px rgba(0,0,0,0.75);
+        }
+        header{
+          font-size: 25px;color:white;
+          text-align:center;line-height:62px;background: #212121;user-select: none;
+          font-weight: 700;
+      }
+        .sidenav .closebtn {
+          position: absolute;top:16px;right:10px;
+         transition: all .5s ;background-color:#1976D2;
+          cursor: pointer;
+        }
+        #close{
+        color:white;font-size: 15px;transition: all .5s ;
+        }
+        #close:hover{
+          background-color: red;transition: all .5s ;
+        }
+        .sidenav ul a {
+          color:white;display: block;width:100%;line-height:63px;text-decoration: none;font-size: 20px;padding-left: 40px;
+          box-sizing: border-box;border-top: 1px solid rgba(255,255,255,.1);
+          border-bottom: 1px solid #1C2833 ;transition: .4s;
+        }
+        ul li:hover a{
+          padding-left: 50px;
+          text-decoration: none;
+         
+        }
+        ul li .a,#navbarDropdown{
+            color:white;font-size:16px;font-family:Verdana, Geneva, Tahoma, sans-serif;
+            }
+        .sidenav ul a:hover{
+             background-color: #1976D2;
+             box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+          transition: all .5s ;
+        }
+        .sidenav ul a i{
+          margin-right: 7px;
+           }
+        .sidenav ul a span{
+        margin-right: 12px;
+        }
+        
+        @media screen and (max-height: 450px) {
+          .sidenav {padding-top: 15px;}
+          .sidenav a {font-size: 18px;}
+        }
+        #ab{
+            color:black;border-bottom: none;width:240px;height:70px;
+         }
+         #navbarDropdown{
+           color:white;font-size:16px;font-family:Verdana, Geneva, Tahoma, sans-serif;height: 75px;
+           }
+         #ab:hover{
+             color:black; background-color: white;
+             }
+    </style>
+    {% endblock %}
+  </head>
+  <body>
+    <div id="mySidenav" class="sidenav">
+        <header>USER</header>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><button class="btn btn-infos" id="close"><i class="fa fa-times"></i></button></a></a>
+      
+        <ul class="list-unstyled components mb-5">
+            <li class="active">
+                <a href="/dash_user" class="a" style="background-color:#1565C0;"><span class="fa fa-qrcode"></span>Dashboard</a>
+              </li>
+          <li class="active">
+            <a href="/" class="a"><span class="fa fa-home"></span>Home</a>
+          </li>
+          <li class="active">
+            <a href="/usercontact" class="a"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;Contact</a>
+          </li>
+          <li class="active">
+            <a href="/booking/{{session['lic_no']}}" class="a"><i class="fa fa-ticket"></i>&nbsp;Book</a>
+          </li>
+          <li class="active">
+            <a href="/history/{{session['lic_no']}}" class="a"><i class="fa fa-history" aria-hidden="true"></i>&nbsp;Booking history</a>
+          </li>
+        <li>
+              <a href="/logout_user" class="a"><span class="fas fa-sign-out-alt"></span>Logout</a>
+          </li>
+          </ul>
+      </div>
+      
+      
+      <nav class="navbar navbar-expand-lg navbar-dark" id="navbar" style="background-color:#000000;height:60px;">
+        <a class="navbar-brand" href="#"><h3 id="text1">USER <span>Dashboard</span></h3></a>
+      
+        <button type="button" id="sidebarCollapse" class="btn btn-darks" onclick="openNav()">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+      
+          </button>
+      </nav>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+      {% block footer %}
+     
+      {% endblock %}
+    </div>
+    <script>
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "270px";
+          document.getElementById("main").style.marginLeft = "260px";
+          document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("main").style.marginLeft= "0";
+          document.body.style.backgroundColor = "white";
+        }
+        </script>
+  </body>
+</html>

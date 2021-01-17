@@ -1,0 +1,100 @@
+{% extends "userlayout.html" %}
+<!--title part-->
+{% block title %}online Booking{% endblock %}
+<!--head part-->
+{% block head %}
+{{ super() }}
+<style>
+
+  #input{
+      margin-left: 10px;
+  }
+  .card{
+    margin-top:30px;border-top-left-radius: 25px;border-bottom-right-radius: 25px;border:solid 1px #455A64;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+  }
+  .card:hover{
+    box-shadow: 0 0 5px 5px #757575;transition:ease .5s;
+  }
+  .card-header{
+      background-color: #455A64;text-align: center;color: white;font-size: 20px;
+      border:solid 1px #455A64;
+    }
+    #button{
+    background-color: #546E7A;width:90px;
+    }
+    #btn{
+    background-color: #C62828;width:90px;
+    }
+    #btn:hover{
+    box-shadow: 2px 2px rgb(0,0,0);
+    }
+    #button:hover{
+    box-shadow: 2px 2px rgb(0,0,0);
+    }
+    body{
+        background: white;
+    }
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+<div class="container">
+    <form action="/confirm_booking" method="post">
+    <div class="row justify-content-center">
+        <div class="col-sm-7">
+            <div class="card">
+                <div class="card-header" style="border-top-left-radius: 25px;">Car Details</div>
+                    <div class="card-body"><br>
+
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <label>License No.:</label>
+                                <input type="text" class="form-control" id="input" placeholder="Enter License No." value="{{dat}}" name="lic_no" required readonly>
+                            </div>
+                        </div><br>
+                        
+    <div class="row">
+        <div class="col-sm-11">
+            <label>Vechile No.:</label>
+            <input type="text" class="form-control" id="input" placeholder="Enter Vechile Number" name="vech_no" required>
+        </div>
+    </div><br>
+
+    <div class="row">
+        <div class="col-sm-11">
+            <label>Vechile Type:</label>
+            <input type="text" class="form-control" id="input" placeholder="Enter Vechile Type"  name="vech_type" required>
+        </div>
+    </div><br>
+    
+    
+    
+    <div class="row">
+        <div class="col-sm-11">
+            <label>Duration:</label>
+            <input type="number" class="form-control" id="input" placeholder="Enter Duration in hrs"  name="dur" required>
+        </div>
+    </div><br>
+                        <div class="row">
+        <div class="col-sm-11">
+            <label>Date:</label>
+            <input type="date" class="form-control" id="input" placeholder="Enter Duration in hrs"  name="dat" required>
+        </div>
+    </div><br><br>
+
+
+
+<div class="d-flex justify-content-left">
+    <input type="submit" value="Register" class="btn btn-success" name="submit" id="button">&nbsp;&nbsp;&nbsp;
+    <input type="reset" value="Reset" class="btn btn-danger" name="reset" id="btn">
+</div><br>
+</div>
+</div>
+</div>
+</div><br><br>
+    </form>
+</div>
+
+
+{% endblock %}

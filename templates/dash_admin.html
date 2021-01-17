@@ -1,0 +1,120 @@
+{% extends "dashlayout.html" %}
+<!--title part-->
+{% block title %}Admin Dashboard{% endblock %}
+<!--head part-->
+{% block head %}
+{{ super() }}
+<style>
+#buttons{
+    background-color: #1976D2
+;
+}
+.card{
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+#img{
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  height:238px
+}
+#img1
+{
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  height:230px
+
+}
+.card{
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border:solid 1px white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+    }
+    .card:hover{
+    box-shadow: 0 0 5px 5px #757575;
+    transition:ease .5s;
+  }
+
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+
+   
+
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand"></a>
+  <form class="form-inline mr-auto " action="/search_admin_data" method="post">
+   <div class="row">
+       <div class="col-sm-8">
+        <input type="text" class="form-control  mr-sm-9" id="input" placeholder="Enter details" name="search" required>
+       </div>
+       <div class="col-sm-2">
+        <button type="submit" class="btn btn-info" id="buttons">Search</button>
+       </div>
+   </div>
+</form>
+
+<form class="form-inline  ml-auto" action="/search_data_admin" method="post">
+    <div class="row">
+        <div class="col-sm-8">
+         <input type="text" class="form-control  mr-sm-9" id="input" placeholder="Search License No." name="search" required>
+        </div>
+        <div class="col-sm-2">
+         <button type="submit" class="btn btn-info" id="buttons">Search</button>
+        </div>
+    </div>
+ </form>
+
+</nav><br><br>
+
+<div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <div class="card animate__animated animate__fadeInBottomLeft" style="width: 18rem;height:395px">
+          <img src="{{url_for('static', filename='staff3.jpg')}}" class="card-img-top" alt="..." id="img"><br>
+          <div class="card-body">
+            <h1 style="text-align:center">15</h1>
+      </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="card animate__animated animate__fadeInUp" style="width: 18rem;margin-top:5px;height:395px">
+          <img src="{{url_for('static', filename='sta1.jpg')}}" class="card-img-top" alt="..." id="img1"><br>
+          <div class="card-body">
+            <h1 style="text-align:center">10</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="card animate__animated animate__fadeInBottomRight" style="width: 18rem;margin-top: 5px;height:395px">
+          <img src="{{url_for('static', filename='sta2.jpg')}}" class="card-img-top" alt="..." id="img1">
+          <hr>
+          <div class="card-body">
+            <h1 style="text-align:center">20</h1>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+{% with messages= get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+                       <script> swal("Done", "{{msg}}", "success");</script>
+                       
+{% endfor %}
+{% endif %}
+{% endwith %}
+  {% endblock %}

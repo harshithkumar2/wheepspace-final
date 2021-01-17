@@ -1,0 +1,104 @@
+{% extends "stafflayout.html" %}
+<!--title part-->
+{% block title %}Results{% endblock %}
+<!--head part-->
+{% block head %}
+{{ super() }}
+<style>
+.card{
+    margin-top:40px;border-top-left-radius: 25px;border-bottom-right-radius: 25px;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+    border:solid 1px #1976D2;
+}
+.card:hover{
+    box-shadow: 0 0 5px 5px #757575;transition:ease .5s;
+  }
+#header{
+  background-color:#1976D2;color:white;font-size:19px;font-weight:500;border-bottom:solid 1px #1976D2;
+  border-top-left-radius: 25px;text-align: center;
+    
+}
+.a1,.b{
+  background-color: white;color:black;
+  font-size:14.5px;
+}
+tr{
+  border-bottom: 0.5px solid lightgray;
+}
+.error{
+  margin-top:20px;width:900px;height: 600px;
+   
+}
+#button{
+    background-color: #1E88E5;width:150px;
+    }
+    #button:hover{
+    box-shadow: 2px 2px rgb(0,0,0);
+    }
+body{
+  background-color: white;
+}
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+{% with messages= get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+                        <p style="text-align:center;color:red;font-size:20px;">{{msg}}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+    {% if data %}
+
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-7">
+          <div class="card" id="cards">
+            <div class="card-header" id="header">Search Results</div>
+            
+                <div class="card-body">
+                      <table class="table table-borderless" style="border-collapse:collapse;">
+                        <tbody>
+                          <tr style="border-top:none">
+                            <th class="a1">Name:</th>
+                            <td class="b">{{data['name']}}</td>
+                          </tr>
+                          <tr>
+                            <th class="a1">Email:</th>
+                            <td class="b">{{data['email']}}</td>
+                          </tr>
+                          <tr>
+                              <th class="a1">Phone:</th>
+                              <td class="b">{{data['phone']}}</td>
+                          </tr>
+
+                          <tr>
+                            <th class="a1">License no:</th>
+                           <td class="b">{{data['license_no']}}</td>
+                        </tr>
+                        <tr>
+                          <th class="a1">Vechile no:</th>
+                         <td class="b">{{data['vech_no']}}</td>
+                      </tr>
+                      <tr style="border-bottom:none">
+                        <th class="a1">Vechile Type:</th>
+                       <td class="b">{{data['vech_type']}}</td>
+                    </tr>
+                          
+                      </tbody>
+                </table><br>
+                <div class="row justify-content-center">
+                  <a href="/book/{{data['license_no']}}"><button type="submit" class="btn btn-info" id="button">Book</button> </a>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% else %}
+    <p style="text-align: center;">
+      <img src="{{url_for('static', filename='b2.jpg')}}" class="error" /></p>
+  {% endif %}
+
+
+{% endblock %}

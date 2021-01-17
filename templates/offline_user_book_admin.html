@@ -1,0 +1,36 @@
+{% extends "dashlayout.html" %}
+<!--title part-->
+{% block title %}booking{% endblock %}
+<!--head part-->
+{% block head %}
+{{ super() }}
+<style>
+
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+<div class="container">
+    <form action="/search_data_admin" method="post">
+{% with messages= get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+                        <p style="text-align:center;color:red;font-size:20px;">{{msg}}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+    <div class="row">
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="input" placeholder="Search license number...." name="search" required>
+        </div>
+        <div class="col-sm-4">
+           <button type="submit" class="btn btn-success">Search</button>
+        </div>
+        </div><br>
+
+    </form>
+
+</div>
+
+
+{% endblock %}

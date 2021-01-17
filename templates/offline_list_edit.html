@@ -1,0 +1,94 @@
+{% extends "dashlayout.html" %}
+<!--title part-->
+{% block title %}Offline Results{% endblock %}
+<!--head part-->
+{% block head %}
+{{ super() }}
+<style>
+table{
+  font-family:'Roboto' sans-serif;border-collapse: collapse;width: 100%;
+}
+table tr:nth-child(even){
+  background-color: #E0E0E0;
+  }
+  .error{
+  margin-top:20px;width:900px;height: 600px;
+
+}
+table th {
+  padding-top: 14px;padding-bottom: 14px;text-align:left;background-color:#1976D2;color: whitesmoke;
+  letter-spacing:0.5px;user-select: none;
+  border-right: 0.5px solid #BBDEFB;
+ }
+table td
+{
+border-right: 0.5px solid #BBDEFB;height:70px;
+}
+table td, table th {
+ border-bottom: 0.5px solid #BBDEFB;
+}
+table tr:hover {
+  background-color: #E3F2FD;cursor: pointer;
+}
+#button{
+  background-color: #00C853;width:50px;
+}
+#btn{
+    background-color: #C62828;width:50px;
+    }
+   
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+
+{% with messages= get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+                        <p style="text-align:center;color:red;font-size:20px;">{{msg}}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+    {% if data %}
+    <div style="overflow-x:auto;">
+      <table class="table">
+        <thead>
+          <tr>
+        <th scope="col">License no</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Vechile No.</th>
+        <th scope="col">vechile type</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for datas in data %}
+    <tr>
+      <td>{{datas['license_no']}}</td>
+        <td>{{datas['name']}}</td>
+        <td>{{datas['email']}}</td>
+        <td>{{datas['phone']}}</td>
+        <td>{{datas['vech_no']}}</td>
+        <td>{{datas['vech_type']}}</td>
+        <td>{{datas['duration']}}</td>
+        <td><a href="/edit_offline/{{datas['license_no']}}"><button type="submit" class="btn btn-success" id="button"><i class="fa fa-edit"></i></button> </a> </td>
+        <td><a href="/delete_offline/{{datas['license_no']}}"><button type="submit" class="btn btn-success" id="btn"><i class="fa fa-trash" aria-hidden="true"></i></button> </a> </td>
+    </tr>
+
+{% endfor %}
+  </tbody>
+</table>
+</div>
+    {% else %}
+    <p style="text-align: center;">
+      <img src="{{url_for('static', filename='b2.jpg')}}" class="error" /></p>
+  {% endif %}
+
+
+{% endblock %}

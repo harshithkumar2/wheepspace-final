@@ -1,0 +1,78 @@
+{% extends "userlayout.html" %}
+<!--title part-->
+{% block title %}History{% endblock %}
+<!--head part-->
+{% block head %}
+{{ super() }}
+<style>
+table{
+  font-family:'Roboto' sans-serif;border-collapse: collapse;
+  width: 100%;
+}
+table tr:nth-child(even){
+  background-color: #E0E0E0;
+  }
+table th {
+  padding-bottom: 14px;text-align:left;background-color:#1976D2;color: whitesmoke;
+  letter-spacing:0.5px;user-select: none;border-right: 0.5px solid #BBDEFB;
+ }
+table td
+{
+border-right: 0.5px solid #BBDEFB;height:70px;
+}
+table td, table th {
+ border-bottom: 0.5px solid #BBDEFB;
+}
+table tr:hover {
+  background-color: #E3F2FD;cursor: pointer;
+}
+.error{
+  margin-top:20px;width:900px;height: 600px;
+   
+}
+</style>
+{% endblock %}
+<!--content part-->
+{% block content %}
+                    <!--error-->
+{% with messages= get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+                        <p style="text-align:center;color:red;font-size:20px;">{{msg}}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+                    <!--end-->
+    {% if data %}
+    <div style="overflow-x:auto;">
+      <table class="table">
+     <thead>
+       
+      <tr>
+        <th scope="col">Vehicle No</th>
+        <th scope="col">Vehicle Type</th>
+        <th scope="col">Duration(in hrs)</th>
+        <th scope="col">Date</th>
+    </tr>
+
+  </thead>
+ 
+{% for datas in data %}
+    <tr>
+      <td>{{datas['vech_no']}}</td>
+        <td>{{datas['vech_type']}}</td>
+        <td>{{datas['duration']}}</td>
+        <td>{{datas['dates']}}</td>
+    </tr>
+
+{% endfor %}
+  </tbody>
+</table>
+    {% else %}
+    <p style="text-align: center;">
+      <img src="{{url_for('static', filename='b2.jpg')}}" class="error" /></p>
+  {% endif %}
+
+
+{% endblock %}
